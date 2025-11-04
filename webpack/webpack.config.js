@@ -1,35 +1,41 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  entry: './src/index.js',
+  entry: "./src/index.js",
   output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, "dist"),
+    filename: "bundle.js",
     clean: true,
   },
-  mode: 'development',
   module: {
     rules: [
       {
-        test: /\.css$/i,
-        use: ['style-loader', 'css-loader'],
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: "babel-loader",
       },
       {
-        test: /\.(png|jpe?g|gif|svg)$/i,
-        type: 'asset/resource',
+        test: /\.s[ac]ss$/i,
+        use: ["style-loader", "css-loader", "sass-loader"],
+      },
+      {
+        test: /\.(png|jpg|jpeg|gif)$/i,
+        type: "asset/resource",
       },
     ],
   },
+  resolve: {
+    extensions: [".js", ".jsx"],
+  },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.html',
-      title: 'Giới thiệu bản thân',
+      template: "./public/index.html",
     }),
   ],
   devServer: {
-    static: './dist',
-    port: 3000,
-    open: true,
+    static: "./dist",
+    hot: true,
+    port: 3001,
   },
 };

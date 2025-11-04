@@ -6,7 +6,7 @@ export default function App() {
   const btnClass = classNames("btn", { active: true });
 
   const handleClick = () => {
-    alert("Xin chào");
+    alert("Xin chào ");
   };
 
   return (
@@ -17,7 +17,7 @@ export default function App() {
       </p>
       <img src={profile} alt="Profile" className="profile-img" />
       <button className={btnClass} onClick={handleClick}>
-        Bấm vào đây
+        Hãy bấm vào đây
       </button>
     </div>
   );

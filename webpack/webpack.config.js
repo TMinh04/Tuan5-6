@@ -7,6 +7,7 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",
     clean: true,
+    publicPath: "/", // để React Router hoạt động đúng
   },
   module: {
     rules: [
@@ -16,7 +17,7 @@ module.exports = {
         use: "babel-loader",
       },
       {
-        test: /\.s[ac]ss$/i,
+        test: /\.s?css$/,
         use: ["style-loader", "css-loader", "sass-loader"],
       },
       {
@@ -36,6 +37,7 @@ module.exports = {
   devServer: {
     static: "./dist",
     hot: true,
-    port: 3000,
+    port: 3006,
+    historyApiFallback: true, // ⚠️ rất quan trọng cho React Router
   },
 };

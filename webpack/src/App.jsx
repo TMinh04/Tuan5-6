@@ -1,24 +1,17 @@
 import React from "react";
-import classNames from "classnames";
-import profile from "./images/profile.jpg";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Contact from "./pages/Contact";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./style.scss";
 
 export default function App() {
-  const btnClass = classNames("btn", { active: true });
-
-  const handleClick = () => {
-    alert("Xin chào ");
-  };
-
   return (
-    <div className="container">
-      <h1 className="title">webpack</h1>
-      <p className="desc">
-      Chào bạn
-      </p>
-      <img src={profile} alt="Profile" className="profile-img" />
-      <button className={btnClass} onClick={handleClick}>
-        Hãy bấm vào đây
-      </button>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
